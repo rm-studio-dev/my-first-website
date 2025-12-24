@@ -27,6 +27,13 @@ p {
     margin-bottom: 30px;
 }
 
+{
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 a {
     display: inline-block;
     padding: 10px 20px;
@@ -41,3 +48,4 @@ a:hover {
     border-color: #f0f;
     text-shadow: 0 0 5px #f0f, 0 0 10px #0ff;
 }
+
