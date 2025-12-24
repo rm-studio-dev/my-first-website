@@ -10,6 +10,11 @@ body {
     height: 100vh;
     text-align: center;
     background-image: url('R.M.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 }
 
 .container {
@@ -58,6 +63,7 @@ a:hover {
     border-color: #f0f;
     text-shadow: 0 0 5px #f0f, 0 0 10px #0ff;
 }
+
 
 
 
