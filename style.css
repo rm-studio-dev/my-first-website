@@ -1,6 +1,43 @@
 body {
-  background-color: #000000;
-  color: #e5e7eb;
-  font-family: 'Press Start 2P', monospace;
+    background-color: #000000;
+    color: #e5e7eb;
+    font-family: 'Press Start 2P', monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
 }
 
+.container {
+    max-width: 800px;
+}
+
+h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+}
+
+p {
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #0ff;
+    color: #0ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #f0f;
+    border-color: #f0f;
+    text-shadow: 0 0 5px #f0f, 0 0 10px #0ff;
+}
