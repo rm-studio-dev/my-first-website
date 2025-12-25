@@ -1,17 +1,53 @@
-/* -------------------- بدنه اصلی -------------------- */
 body {
-    background-color: #000000;
-    color: #e5e7eb;
-    font-family: 'Press Start 2P', monospace;
     margin: 0;
     padding: 0;
-    text-align: center;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),
-    url('R.M.jpg') no-repeat center center fixed;
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.3)), 
+                url('R.M.jpg') no-repeat center center fixed;
     background-size: cover;
+    color: #e5e7eb;
+    text-align: center;
 }
 
-/* -------------------- ناوبری -------------------- */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #000;
+}
+
+/* Intro box */
+.intro-box {
+    background-color: rgba(128,0,128,0.5); /* رنگ بنفش شفاف */
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.start-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #facc15;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.start-btn:hover {
+    background-color: #f59e0b;
+    color: #fff;
+}
+
+/* Nav menu */
 nav {
     display: flex;
     justify-content: center;
@@ -19,7 +55,7 @@ nav {
     padding: 15px;
     background-color: rgba(0,0,0,0.7);
     border-radius: 10px;
-    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 nav a {
@@ -38,40 +74,35 @@ nav a:hover {
     box-shadow: 0 0 10px #f59e0b;
 }
 
-/* -------------------- کارت‌ها (نسخه دسکتاپ) -------------------- */
+/* Game cards */
 .games {
     display: flex;
-    justify-content: center; /* کارت‌ها وسط صفحه */
-    gap: 20px;               /* فاصله بین کارت‌ها */
-    flex-wrap: wrap;          /* وقتی جا کم باشه میره خط بعد */
-    margin: 50px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .game-card {
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(128,0,128,0.5);
     color: #e5e7eb;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    width: 300px;             /* عرض کارت دسکتاپ */
+    width: 200px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .game-card img {
     width: 100%;
+    height: auto;
     border-radius: 10px;
     margin-bottom: 10px;
-    max-height: 267px;
-    object-fit: cover;
 }
 
 .game-card a {
     display: inline-block;
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: #facc15;
     color: #000;
     text-decoration: none;
@@ -89,41 +120,3 @@ nav a:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 20px #f59e0b;
 }
-
-/* -------------------- موبایل -------------------- */
-@media (max-width: 768px) {
-    .games {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .game-card {
-        width: 90%;
-        max-width: 200px;
-        padding: 5px;
-        height: auto;
-        overflow: hidden;
-    }
-
-    .game-card img {
-        width: 100%;
-        max-height: 267px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-
-    .game-card h2, .game-card p, .game-card a {
-        text-align: center;
-        margin: 5px 0;
-    }
-
-    .game-card a {
-        padding: 10px 15px;
-        font-size: 0.9em;
-    }
-}
-
-
-
-
