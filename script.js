@@ -1,5 +1,4 @@
-// فقط دسکتاپ، پس نیازی به منوی موبایل نیست
-// زیرمنوی dropdown
+// فقط دسکتاپ، زیرمنو با hover باز میشه، نیازی به موبایل نیست
 const dropdowns = document.querySelectorAll('.dropbtn');
 
 dropdowns.forEach(btn => {
