@@ -175,7 +175,12 @@ nav a:hover {
   header p {
     font-size: 1em;
   }
+    nav a {
+  font-size: 1em; /* کوچیک‌تر شدن فونت لینک‌ها */
+  padding: 5px 10px; /* کمتر شدن فاصله داخل لینک */
 }
+
+
 
 
 
