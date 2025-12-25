@@ -1,12 +1,12 @@
-// وقتی کل صفحه (HTML + CSS + عکس‌ها) لود شد
+// وقتی کل صفحه لود شد
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
 
 // انیمیشن خروج نرم موقع رفتن به صفحه دیگه
 document.querySelectorAll("a").forEach(link => {
-  // فقط لینک‌های داخلی سایت
-  if (link.href && link.origin === window.location.origin) {
+  // فقط لینک‌های داخلی که واقعی هستن و کلاس dropbtn ندارن
+  if (link.href && link.origin === window.location.origin && !link.classList.contains("dropbtn")) {
     link.addEventListener("click", e => {
       e.preventDefault();
       const target = link.href;
@@ -15,7 +15,7 @@ document.querySelectorAll("a").forEach(link => {
 
       setTimeout(() => {
         window.location.href = target;
-      }, 400); // باید با transition تو CSS یکی باشه
+      }, 400);
     });
   }
 });
