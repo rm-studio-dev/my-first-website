@@ -214,4 +214,14 @@ nav {
     min-width: 140px;
   }
 }
+/* ===== Page Transition ===== */
+body {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
 
