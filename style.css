@@ -41,9 +41,9 @@ nav a:hover {
 /* -------------------- کارت‌ها (نسخه دسکتاپ) -------------------- */
 .games {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap; /* کارت‌ها افقی کنار هم */
+    justify-content: center; /* کارت‌ها وسط صفحه */
+    gap: 20px;               /* فاصله بین کارت‌ها */
+    flex-wrap: wrap;          /* وقتی جا کم باشه میره خط بعد */
     margin: 50px 0;
 }
 
@@ -52,7 +52,7 @@ nav a:hover {
     color: #e5e7eb;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;            /* عرض کارت دسکتاپ */
+    width: 300px;             /* عرض کارت دسکتاپ */
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
@@ -64,6 +64,8 @@ nav a:hover {
     width: 100%;
     border-radius: 10px;
     margin-bottom: 10px;
+    max-height: 267px;
+    object-fit: cover;
 }
 
 .game-card a {
@@ -121,6 +123,7 @@ nav a:hover {
         font-size: 0.9em;
     }
 }
+
 
 
 
