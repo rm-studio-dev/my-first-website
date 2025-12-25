@@ -176,10 +176,11 @@ nav a:hover {
     font-size: 1em;
   }
     nav a {
-  font-size: 1em; /* کوچیک‌تر شدن فونت لینک‌ها */
-  padding: 5px 10px; /* کمتر شدن فاصله داخل لینک */
+  font-size: 1em !important; /* کوچیک‌تر شدن فونت لینک‌ها */
+  padding: 5px 10px !important; /* کمتر شدن فاصله داخل لینک */
 }
-}
+
+
 
 
 
