@@ -210,6 +210,30 @@ body.loaded {
   opacity: 1;
 }
 
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: #facc15; /* زرد */
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.social-btn i {
+    font-size: 16px;
+}
+
+.social-btn:hover {
+    background-color: #a855f7; /* بنفش ملایم */
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #a855f7;
+}
+
 
 
 
