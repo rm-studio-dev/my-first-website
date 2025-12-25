@@ -6,7 +6,7 @@ menuBtn.addEventListener('click', () => {
     nav.classList.toggle('active');
 });
 
-// ===== زیرمنوهای موبایل (برای هر dropbtn جدا) =====
+// ===== زیرمنوهای موبایل (هر dropbtn جدا) =====
 const dropdownBtns = document.querySelectorAll('.dropbtn');
 
 dropdownBtns.forEach(btn => {
