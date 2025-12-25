@@ -90,36 +90,36 @@ nav a:hover {
 
 /* -------------------- موبایل -------------------- */
 @media (max-width: 768px) {
-    /* کارت‌ها */
+    .games {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
     .game-card {
-        width: 90%;         /* کارت‌ها کمی کوچیک‌تر */
-        max-width: 200px;   /* حداکثر عرض کارت */
-        padding: 10px;      /* فضای داخلی کمتر */
-        height: auto;       /* اجازه می‌ده ارتفاع عکس کنترل‌کننده باشه */
+        width: 90%;
+        max-width: 200px;
+        padding: 5px;
+        height: auto;
+        overflow: hidden;
     }
 
     .game-card img {
         width: 100%;
-        max-height: 200px;  /* محدود کردن ارتفاع عکس */
+        max-height: 267px;
         object-fit: cover;
         border-radius: 10px;
     }
 
+    .game-card h2, .game-card p, .game-card a {
+        text-align: center;
+        margin: 5px 0;
+    }
+
     .game-card a {
-        padding: 8px 12px;  /* دکمه‌ها کمی کوچیک‌تر */
-        font-size: 0.9em;  
-    }
-
-    /* منو */
-    nav {
-        flex-direction: column; /* لینک‌ها زیر هم */
-        gap: 10px;              /* فاصله بین لینک‌ها کمتر */
-        padding: 10px;
-    }
-
-    nav a {
-        padding: 6px 12px;      /* منوها کوچیک‌تر */
+        padding: 10px 15px;
         font-size: 0.9em;
     }
 }
+
 
