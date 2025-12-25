@@ -163,3 +163,55 @@ nav a:hover {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/* ===== Dropdown Fix & Upgrade ===== */
+
+/* برای اینکه منو روی بقیه عناصر نیفته */
+nav {
+  position: relative;
+  z-index: 500;
+}
+
+/* کلیک هم مثل hover عمل کنه */
+.dropdown:focus-within .dropdown-content {
+  display: block;
+}
+
+/* دکمه کشویی حس دکمه بگیره */
+.dropbtn {
+  display: inline-block;
+}
+
+/* جلوگیری از لرزش موقع رفتن موس */
+.dropdown-content {
+  margin-top: 5px;
+}
+
+/* انیمیشن نرم‌تر */
+.dropdown-content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  opacity: 1;
+  transform: translateY(0);
+  display: block;
+}
+
+/* موبایل‌پسندتر */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .dropdown-content {
+    right: auto;
+    left: 0;
+    min-width: 140px;
+  }
+}
+
