@@ -1,3 +1,6 @@
+/* ===========================
+   استایل کلی سایت
+=========================== */
 body {
     margin: 0;
     padding: 0;
@@ -23,7 +26,7 @@ h1 {
 
 /* Intro box */
 .intro-box {
-    background-color: rgba(128,0,128,0.5); /* رنگ بنفش شفاف */
+    background-color: rgba(128,0,128,0.5);
     display: inline-block;
     padding: 20px;
     border-radius: 10px;
@@ -47,7 +50,27 @@ h1 {
     color: #fff;
 }
 
-/* Nav menu */
+/* ===========================
+   HEADER و منو
+=========================== */
+header {
+    position: relative;
+}
+
+/* دکمه همبرگری موبایل */
+.menu-btn {
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+    display: none; /* پیش‌فرض دسکتاپ مخفی */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 1001;
+    color: #facc15;
+}
+
+/* Nav منو اصلی */
 nav {
     display: flex;
     justify-content: center;
@@ -56,6 +79,13 @@ nav {
     background-color: rgba(0,0,0,0.7);
     border-radius: 10px;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 500;
+
+    /* برای دسکتاپ */
+    max-height: none;
+    overflow: visible;
+    transition: none;
 }
 
 nav a {
@@ -74,7 +104,58 @@ nav a:hover {
     box-shadow: 0 0 10px #f59e0b;
 }
 
-/* Game cards */
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    min-width: 160px;
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
+    z-index: 1000;
+
+    /* انیمیشن نرم */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 15px;
+    color: #facc15;
+    text-decoration: none;
+    font-size: 12px;
+    transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(250, 204, 21, 0.2);
+}
+
+/* فعال شدن با hover یا focus */
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================
+   گیم کارت‌ها
+=========================== */
 .games {
     display: flex;
     justify-content: center;
@@ -121,97 +202,38 @@ nav a:hover {
     box-shadow: 0 0 20px #f59e0b;
 }
 
-/* ===== Dropdown Menu ===== */
-
-.dropdown {
-  position: relative;
-}
-
-.dropbtn {
-  cursor: pointer;
-}
-
-/* محتوای کشویی */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  min-width: 160px;
-  border-radius: 8px;
-  padding: 10px 0;
-  box-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
-  z-index: 1000;
-}
-
-/* لینک‌های داخل کشویی */
-.dropdown-content a {
-  display: block;
-  padding: 8px 15px;
-  color: #facc15;
-  text-decoration: none;
-  font-size: 12px;
-  transition: background 0.3s;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(250, 204, 21, 0.2);
-}
-
-/* فعال شدن با hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* ===== Dropdown Fix & Upgrade ===== */
-
-/* برای اینکه منو روی بقیه عناصر نیفته */
-nav {
-  position: relative;
-  z-index: 500;
-}
-
-/* کلیک هم مثل hover عمل کنه */
-.dropdown:focus-within .dropdown-content {
-  display: block;
-}
-
-/* دکمه کشویی حس دکمه بگیره */
-.dropbtn {
-  display: inline-block;
-}
-
-/* جلوگیری از لرزش موقع رفتن موس */
-.dropdown-content {
-  margin-top: 5px;
-}
-
-/* انیمیشن نرم‌تر */
-.dropdown-content {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.dropdown:hover .dropdown-content,
-.dropdown:focus-within .dropdown-content {
-  opacity: 1;
-  transform: translateY(0);
-  display: block;
-}
-
-/* موبایل‌پسندتر */
+/* ===========================
+   موبایل
+=========================== */
 @media (max-width: 768px) {
-  nav {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
+    .menu-btn {
+        display: block;
+    }
 
-  .dropdown-content {
-    right: auto;
-    left: 0;
-    min-width: 140px;
-  }
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        background-color: rgba(0,0,0,0.9);
+        border-radius: 10px;
+    }
+
+    nav.active {
+        max-height: 500px; /* ارتفاع کافی برای همه لینک‌ها */
+    }
+
+    nav a {
+        padding: 10px 20px;
+        border-bottom: 1px solid #444;
+    }
+
+    .dropdown-content {
+        position: static;
+        transform: translateY(0);
+        opacity: 1;
+        box-shadow: none;
+        margin: 0;
+    }
 }
-
