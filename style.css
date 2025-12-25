@@ -150,46 +150,23 @@ nav a:hover {
   background-color: #f59e0b;
   color: #fff;
 }
-
-/* موبایل و صفحه کوچک */
+/* صفحه موبایل */
 @media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .games {
-    flex-direction: column;
-    align-items: center;
+  .game-card img {
+    width: 100%;
+    height: 267px;      /* ارتفاع ثابت متناسب با نسبت 3:4 */
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   .game-card {
+    padding: 10px;
     width: 90%;
-    margin-bottom: 20px;
+    max-width: 200px;   /* کنترل عرض کارت */
   }
-
-  header h1 {
-    font-size: 2em;
-  }
-
-  header p {
-    font-size: 1em;
-  }
-    
-.game-card img {
-  width: 100%;
-  aspect-ratio: 3 / 4;   /* نسبت ۳:۴ */
-  object-fit: cover;      /* پر کردن ولی کشیده نشدن */
-  border-radius: 10px;
 }
 
-.game-card {
-  padding: 10px;
-  width: 90%;
-  max-width: 300px;
-}
 
-}
 
 
 
