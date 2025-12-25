@@ -1,218 +1,125 @@
+/* -------------------- بدنه اصلی -------------------- */
 body {
     background-color: #000000;
     color: #e5e7eb;
     font-family: 'Press Start 2P', monospace;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     text-align: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background: linear-gradient(to bottom, #0f172a, #1e293b);
     background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),
     url('R.M.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #e5e7eb;
-    font-family: Arial, sans-serif;
 }
 
-}
-
-.container {
-    max-width: 800px;
-}
-
-a {
-    animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 5px #0ff; }
-    to { text-shadow: 0 0 20px #0ff, 0 0 30px #0ff; }
-}
-
-h1 {
-  font-size: 3em;
-  text-shadow: 2px 2px 5px #000;
-}
-
-p {
-  background-color: rgba(0,0,0,0.5);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-p {
-    font-size: 12px;
-    margin-bottom: 30px;
-}
-
-{
-    background-image: url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-a {
-    display: inline-block;
-    padding: 10px 20px;
-    border: 2px solid #0ff;
-    color: #0ff;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-a:hover {
-    color: #f0f;
-    border-color: #f0f;
-    text-shadow: 0 0 5px #f0f, 0 0 10px #0ff;
-}
-
-h1, p {
-    background-color: rgba(0,0,0,0.5);
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
+/* -------------------- ناوبری -------------------- */
 nav {
-  display: flex;
-  justify-content: center; /* منو وسط صفحه */
-  gap: 30px; /* فاصله بین لینک‌ها */
-  padding: 15px;
-  background-color: rgba(0,0,0,0.7);
-  border-radius: 10px;
-  margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 nav a {
-  color: #facc15; /* زرد گیمینگ */
-  text-decoration: none;
-  font-weight: bold;
-  padding: 8px 15px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+    color: #facc15;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
 nav a:hover {
-  background-color: #f59e0b; /* نارنجی گیمینگ */
-  color: #000;
-  transform: scale(1.1); /* بزرگ شدن کمی */
-  box-shadow: 0 0 10px #f59e0b;
+    background-color: #f59e0b;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #f59e0b;
 }
 
+/* -------------------- کارت‌ها (نسخه دسکتاپ) -------------------- */
 .games {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin: 50px 0;
+    display: flex;
+    flex-direction: column;  /* کارت‌ها زیر هم */
+    align-items: center;     /* وسط چین شدن */
+    gap: 20px;
+    margin: 50px 0;
 }
 
 .game-card {
-  background-color: rgba(0,0,0,0.7);
-  color: #e5e7eb;
-  padding: 20px;
-  border-radius: 10px;
-  width: 200px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.game-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px #f59e0b;
-}
-
-.game-card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.game-card a {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #facc15;
-  color: #000;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.game-card a:hover {
-  background-color: #f59e0b;
-  color: #fff;
-}
-/* تنظیمات صفحه موبایل */
-@media (max-width: 768px) {
-  .games {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-}
-  .game-card {
-    width: 90%;
-    max-width: 200px;     /* کنترل عرض کارت */
-    padding: 5px;         /* کمتر کردن فضای داخلی */
-    height: auto;         /* اجازه می‌ده ارتفاع عکس تعیین‌کننده باشه */
-    overflow: hidden;     /* از بیرون زدن محتوا جلوگیری می‌کنه */
+    background-color: rgba(0,0,0,0.7);
+    color: #e5e7eb;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;            /* عرض کارت دسکتاپ */
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .game-card img {
-    width: 100%;
-    height: auto;         /* ارتفاع عکس خودش تعیین‌کننده باشه */
-    max-height: 267px;    /* محدود کردن حداکثر ارتفاع کارت */
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  .game-card h2, .game-card p, .game-card a {
-    text-align: center;
-    margin: 5px 0;
-  }
 }
 
+.game-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
 
+.game-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #facc15;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
+.game-card a:hover {
+    background-color: #f59e0b;
+    color: #fff;
+}
 
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px #f59e0b;
+}
 
+/* -------------------- موبایل -------------------- */
+@media (max-width: 768px) {
+    /* کارت‌ها */
+    .game-card {
+        width: 90%;         /* کارت‌ها کمی کوچیک‌تر */
+        max-width: 200px;   /* حداکثر عرض کارت */
+        padding: 10px;      /* فضای داخلی کمتر */
+        height: auto;       /* اجازه می‌ده ارتفاع عکس کنترل‌کننده باشه */
+    }
 
+    .game-card img {
+        width: 100%;
+        max-height: 200px;  /* محدود کردن ارتفاع عکس */
+        object-fit: cover;
+        border-radius: 10px;
+    }
 
+    .game-card a {
+        padding: 8px 12px;  /* دکمه‌ها کمی کوچیک‌تر */
+        font-size: 0.9em;  
+    }
 
+    /* منو */
+    nav {
+        flex-direction: column; /* لینک‌ها زیر هم */
+        gap: 10px;              /* فاصله بین لینک‌ها کمتر */
+        padding: 10px;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    nav a {
+        padding: 6px 12px;      /* منوها کوچیک‌تر */
+        font-size: 0.9em;
+    }
+}
 
