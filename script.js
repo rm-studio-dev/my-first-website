@@ -1,18 +1,11 @@
-// منو همبرگری موبایل
-const menuBtn = document.querySelector('.menu-btn');
-const nav = document.querySelector('nav');
+// فقط دسکتاپ، پس نیازی به منوی موبایل نیست
+// زیرمنوی dropdown
+const dropdowns = document.querySelectorAll('.dropbtn');
 
-menuBtn.addEventListener('click', () => {
-    nav.classList.toggle('active');
-});
-
-// زیرمنوهای موبایل
-const dropdownBtns = document.querySelectorAll('.dropbtn');
-
-dropdownBtns.forEach(btn => {
+dropdowns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const dropdownContent = btn.nextElementSibling;
-        dropdownContent.classList.toggle('open');
+        e.preventDefault(); // جلوگیری از رفتن لینک
+        const content = btn.nextElementSibling;
+        content.classList.toggle('open');
     });
 });
