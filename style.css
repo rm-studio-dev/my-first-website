@@ -237,7 +237,7 @@ body.loaded {
 /*هیرو باکس*/
 .hero-box {
     background: linear-gradient(135deg, #2b003d, #12001a);
-    padding: 40px 20px;
+    padding: 20px 20px; /* padding عمودی کمتر شد */
     border-radius: 18px;
     text-align: center;
     box-shadow: 0 0 25px rgba(155, 0, 255, 0.4);
@@ -246,12 +246,12 @@ body.loaded {
 
 .hero-box h1 {
     color: #ffcc00;
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* فاصله کمتر شد */
 }
 
 .hero-box p {
     color: #eee;
-    margin-bottom: 25px;
+    margin-bottom: 15px; /* فاصله کمتر شد */
     font-size: 14px;
 }
 
@@ -259,6 +259,8 @@ body.loaded {
     display: flex;
     justify-content: center;
 }
+
+
 
 
 
