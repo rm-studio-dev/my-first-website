@@ -238,7 +238,7 @@ body.loaded {
 .search-box {
     display: inline-flex;
     align-items: center;
-    margin-left: 20px; /* فاصله از بقیه لینک‌ها */
+    margin-left: 10px; /* فاصله از بقیه لینک‌ها */
 }
 
 .search-box input {
@@ -261,6 +261,7 @@ body.loaded {
 .search-box button i {
     color: #000;
 }
+
 
 
 
