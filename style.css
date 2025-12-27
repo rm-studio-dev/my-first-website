@@ -233,34 +233,68 @@ body.loaded {
     transform: scale(1.1);
     box-shadow: 0 0 10px #a855f7;
 }
-
-/* باکس سرچ */
-.search-box {
-    display: inline-flex;
+/* 🔍 Search */
+.search-container {
+    display: flex;
     align-items: center;
-    margin-left: 10px; /* فاصله از بقیه لینک‌ها */
+    gap: 10px;
+    margin-left: 20px;
 }
 
-.search-box input {
-    padding: 5px 10px;
-    border-radius: 5px 0 0 5px;
-    border: 1px solid #ccc;
-    outline: none;
+/* input سرچ */
+.search-container input {
+    width: 0;
+    opacity: 0;
+    padding: 10px 14px;
+    border-radius: 25px;
+    border: 2px solid #facc15;
+    background: rgba(20, 0, 30, 0.85);
+    color: #facc15;
     font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    outline: none;
+    transition: 
+        width 0.4s ease,
+        opacity 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.search-box button {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-left: none;
-    border-radius: 0 5px 5px 0;
-    background-color: #ffcc00;
-    cursor: pointer;
+/* وقتی هاور یا فوکوس میشه */
+.search-container:hover input,
+.search-container input:focus {
+    width: 180px;
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.6);
 }
 
-.search-box button i {
+/* آیکون ذره‌بین */
+.search-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #7c3aed, #facc15);
     color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
+
+/* انیمیشن هاور */
+.search-btn:hover {
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.8);
+}
+
+/* آیکون داخل دکمه */
+.search-btn i {
+    font-size: 14px;
+}
+
 
 
 
