@@ -237,7 +237,6 @@ body.loaded {
 /* 🔍 Search */
 /* wrapper برای فاصله از تیتر و nav */
 .search-wrapper {
-    margin-top: 25px;
     display: flex;
     justify-content: center;
 }
@@ -326,6 +325,7 @@ body.loaded {
     display: flex;
     justify-content: center;
 }
+
 
 
 
