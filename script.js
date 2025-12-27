@@ -75,3 +75,35 @@ document.querySelectorAll("a").forEach((link) => {
     }, 400); // با CSS هماهنگ
   });
 });
+
+// ==============================
+// Search Open/Close (Click + Focus)
+// ==============================
+const searchWrap = document.querySelector(".search-wrapper");
+const searchInput = document.querySelector(".search-input");
+const searchBtn = document.querySelector(".search-btn");
+
+if (searchWrap && searchInput && searchBtn) {
+  // کلیک روی ذره‌بین => باز + فوکوس روی input
+  searchBtn.addEventListener("click", () => {
+    searchWrap.classList.add("open");
+    searchInput.focus();
+  });
+
+  // Esc => بستن
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      searchWrap.classList.remove("open");
+      searchInput.blur();
+      searchInput.value = "";
+    }
+  });
+
+  // کلیک بیرون => بستن
+  document.addEventListener("click", (e) => {
+    if (!searchWrap.contains(e.target)) {
+      searchWrap.classList.remove("open");
+    }
+  });
+}
+
