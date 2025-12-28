@@ -49,6 +49,7 @@ nav{
   direction: rtl; /* <<< این خط رو اضافه کن */
 }
 nav a{
+  flex-direction: row-reverse;
   color: #facc15;
   text-decoration: none;
   font-weight: bold;
@@ -212,6 +213,7 @@ nav a:hover{
    Search (Animated)
 ========================= */
 .search-wrapper{
+  flex-direction: row-reverse;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -469,6 +471,7 @@ nav a:hover{
   transform: scale(0.95);
   box-shadow: 0 4px 12px rgba(138, 43, 226, 0.5);
 }
+
 
 
 
