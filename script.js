@@ -64,7 +64,7 @@ document.querySelectorAll("a").forEach((link) => {
 });
 
 // ==============================
-// SEARCH (Global - via games.json)
+// SEARCH (Global - via data/games.json)
 // HTML expected:
 // .search-wrapper .search-input .search-btn .search-results
 // ==============================
@@ -76,13 +76,12 @@ const resultsBox = document.querySelector(".search-results");
 let allGames = [];
 let lastRendered = [];
 
-// ✅ NEW: Calculate base path from script.js location (works in all pages)
+// base from script.js location (works even if script is included from deep folders)
 const scriptEl = document.querySelector('script[src$="script.js"]');
 const SITE_BASE = scriptEl
   ? new URL(".", scriptEl.src).href
   : new URL(".", document.baseURI).href;
 
-// ✅ NEW: Resolve any relative URL safely from SITE_BASE
 const resolveUrl = (u) => {
   if (!u || u === "#") return "#";
   try {
@@ -92,7 +91,7 @@ const resolveUrl = (u) => {
   }
 };
 
-// normalize helper (fa/en safe-ish)
+// normalize helper
 const norm = (s) =>
   (s || "")
     .toString()
@@ -100,27 +99,34 @@ const norm = (s) =>
     .toLowerCase()
     .replace(/\s+/g, " ");
 
-// ✅ UPDATED: fetch games index from SITE_BASE (not current page path)
 async function loadGamesIndex() {
   try {
     const gamesUrl = new URL("data/games.json", SITE_BASE).href;
-
     const res = await fetch(gamesUrl, { cache: "no-store" });
-    if (!res.ok) throw new Error("data/games.json not found");
+
+    if (!res.ok) throw new Error("data/games.json not found / fetch failed");
 
     const data = await res.json();
     if (Array.isArray(data)) return data;
+
+    throw new Error("games.json is not an array");
   } catch (e) {
-    // fallback: only current page cards (if JSON missing)
+    console.warn("[SEARCH] games.json load failed. Fallback to current page cards.", e);
+
+    // fallback: only current page cards
     const cards = Array.from(document.querySelectorAll(".game-card"));
     return cards.map((c) => ({
       title: c.dataset.title || c.querySelector("h2")?.textContent || "",
       desc: c.dataset.desc || c.querySelector("p")?.textContent || "",
-      url: "#",
-      genre: "home",
+      url: c.querySelector("a")?.getAttribute("href") || "#",
+      genre: "page",
     }));
   }
-  return [];
+}
+
+function setSearchingState(isOn) {
+  if (isOn) document.body.classList.add("searching");
+  else document.body.classList.remove("searching");
 }
 
 function openSearchUI() {
@@ -137,14 +143,10 @@ function closeSearchUI({ clear = false } = {}) {
     resultsBox.hidden = true;
     resultsBox.innerHTML = "";
   }
-  document.body.classList.remove("searching");
+  setSearchingState(false);
+  lastRendered = [];
 
   if (clear && searchInput) searchInput.value = "";
-}
-
-function setSearchingState(isOn) {
-  if (isOn) document.body.classList.add("searching");
-  else document.body.classList.remove("searching");
 }
 
 function renderResults(items, q) {
@@ -172,8 +174,12 @@ function renderResults(items, q) {
     .map((g) => {
       const title = g.title || "";
       const genre = g.genre ? ` — ${g.genre}` : "";
-      const url = resolveUrl(g.url || "#"); // ✅ NEW: make links work from any page
-      return `<a href="${url}" class="search-item">${title}${genre}</a>`;
+      const url = resolveUrl(g.url || "#");
+
+      return `<a href="${url}" class="search-item">
+        <span>${title}</span>
+        <span class="meta">${genre}</span>
+      </a>`;
     })
     .join("");
 
@@ -199,13 +205,13 @@ function searchGames(q) {
   renderResults(filtered, q);
 }
 
-// handle click on a result (with smooth transition)
+// Click on a result (smooth transition)
 document.addEventListener("click", (e) => {
   const a = e.target.closest(".search-results a");
   if (!a) return;
 
-  // اگر لینک واقعی بود، انیمیشن خروج
-  if (a.getAttribute("href") && a.getAttribute("href") !== "#") {
+  const href = a.getAttribute("href");
+  if (href && href !== "#") {
     e.preventDefault();
     const target = a.href;
 
@@ -221,7 +227,9 @@ document.addEventListener("click", (e) => {
 });
 
 (async function initSearch() {
-  if (!searchWrap || !searchInput || !searchBtn || !resultsBox) return;
+  if (!searchWrap || !searchInput || !searchBtn || !resultsBox) {
+    return; // اگر یک صفحه سرچ UI ندارد، کل سایت error نمی‌دهد
+  }
 
   allGames = await loadGamesIndex();
 
@@ -238,13 +246,13 @@ document.addEventListener("click", (e) => {
 
       const first = lastRendered?.[0];
       if (first && first.url && first.url !== "#") {
+        const target = resolveUrl(first.url); // ✅ مهم
         document.body.classList.remove("loaded");
         document.body.classList.add("is-loading");
         setTimeout(() => {
-          window.location.href = first.url;
+          window.location.href = target;
         }, 400);
       } else {
-        // اگر چیزی نیست، فقط سرچ رو اجرا کن که پیام "هیچ نتیجه‌ای..." بیاد
         searchGames(searchInput.value);
       }
     }
@@ -255,7 +263,7 @@ document.addEventListener("click", (e) => {
     }
   });
 
-  // click on search button:
+  // click button:
   // - if closed: open
   // - if open: search
   searchBtn.addEventListener("click", () => {
@@ -263,6 +271,12 @@ document.addEventListener("click", (e) => {
       openSearchUI();
       return;
     }
+    searchGames(searchInput.value);
+  });
+
+  // focus => open
+  searchInput.addEventListener("focus", () => {
+    openSearchUI();
     searchGames(searchInput.value);
   });
 
