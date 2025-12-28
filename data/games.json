@@ -1,95 +1,20 @@
 [
-  {
-    "title": "اکشن",
-    "desc": "ورود به صفحه بازی‌های اکشن",
-    "url": "genre/action/html/action.html",
-    "genre": "action"
-  },
-  {
-    "title": "ماجرایی",
-    "desc": "ورود به صفحه بازی‌های ماجرایی",
-    "url": "genre/adventure/html/adventure.html",
-    "genre": "adventure"
-  },
-  {
-    "title": "آنلاین",
-    "desc": "ورود به صفحه بازی‌های آنلاین",
-    "url": "genre/online/html/online.html",
-    "genre": "online"
-  },
+  { "title": "اکشن", "desc": "ورود به صفحه بازی‌های اکشن", "url": "genre/action/html/action.html", "genre": "action" },
+  { "title": "ماجرایی", "desc": "ورود به صفحه بازی‌های ماجرایی", "url": "genre/adventure/html/adventure.html", "genre": "adventure" },
+  { "title": "آنلاین", "desc": "ورود به صفحه بازی‌های آنلاین", "url": "genre/online/html/online.html", "genre": "online" },
 
-  {
-    "title": "Wolverine",
-    "desc": "بازی اکشن",
-    "url": "genre/action/html/action.html#wolverine",
-    "genre": "action"
-  },
-  {
-    "title": "Call of Duty",
-    "desc": "بازی اکشن",
-    "url": "genre/action/html/action.html#call-of-duty",
-    "genre": "action"
-  },
-  {
-    "title": "Warframe",
-    "desc": "بازی اکشن",
-    "url": "genre/action/html/action.html#warframe",
-    "genre": "action"
-  },
-  {
-    "title": "Deadpool",
-    "desc": "بازی اکشن",
-    "url": "genre/action/html/action.html#deadpool",
-    "genre": "action"
-  },
+  { "title": "Wolverine", "desc": "بازی اکشن", "url": "genre/action/html/action.html", "genre": "action" },
+  { "title": "Call of Duty", "desc": "بازی اکشن", "url": "genre/action/html/action.html", "genre": "action" },
+  { "title": "Warframe", "desc": "بازی اکشن", "url": "genre/action/html/action.html", "genre": "action" },
+  { "title": "Deadpool", "desc": "بازی اکشن", "url": "genre/action/html/action.html", "genre": "action" },
 
-  {
-    "title": "Tomb Raider",
-    "desc": "بازی ماجرایی",
-    "url": "genre/adventure/html/adventure.html#tomb-raider",
-    "genre": "adventure"
-  },
-  {
-    "title": "Uncharted",
-    "desc": "بازی ماجرایی",
-    "url": "genre/adventure/html/adventure.html#uncharted",
-    "genre": "adventure"
-  },
-  {
-    "title": "God of War",
-    "desc": "بازی ماجرایی",
-    "url": "genre/adventure/html/adventure.html#god-of-war",
-    "genre": "adventure"
-  },
-  {
-    "title": "Assassin's Creed",
-    "desc": "بازی ماجرایی",
-    "url": "genre/adventure/html/adventure.html#assassins-creed",
-    "genre": "adventure"
-  },
+  { "title": "Tomb Raider", "desc": "بازی ماجرایی", "url": "genre/adventure/html/adventure.html", "genre": "adventure" },
+  { "title": "Uncharted", "desc": "بازی ماجرایی", "url": "genre/adventure/html/adventure.html", "genre": "adventure" },
+  { "title": "God of War", "desc": "بازی ماجرایی", "url": "genre/adventure/html/adventure.html", "genre": "adventure" },
+  { "title": "Assassin's Creed", "desc": "بازی ماجرایی", "url": "genre/adventure/html/adventure.html", "genre": "adventure" },
 
-  {
-    "title": "Fortnite",
-    "desc": "بازی آنلاین",
-    "url": "genre/online/html/online.html#fortnite",
-    "genre": "online"
-  },
-  {
-    "title": "Dota 2",
-    "desc": "بازی آنلاین",
-    "url": "genre/online/html/online.html#dota-2",
-    "genre": "online"
-  },
-  {
-    "title": "League of Legends",
-    "desc": "بازی آنلاین",
-    "url": "genre/online/html/online.html#league-of-legends",
-    "genre": "online"
-  },
-  {
-    "title": "PUBG",
-    "desc": "بازی آنلاین",
-    "url": "genre/online/html/online.html#pubg",
-    "genre": "online"
-  }
+  { "title": "Fortnite", "desc": "بازی آنلاین", "url": "genre/online/html/online.html", "genre": "online" },
+  { "title": "Dota 2", "desc": "بازی آنلاین", "url": "genre/online/html/online.html", "genre": "online" },
+  { "title": "League of Legends", "desc": "بازی آنلاین", "url": "genre/online/html/online.html", "genre": "online" },
+  { "title": "PUBG", "desc": "بازی آنلاین", "url": "genre/online/html/online.html", "genre": "online" }
 ]
