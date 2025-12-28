@@ -2,6 +2,7 @@
    Base / Body
 ========================= */
 body{
+  direction: rtl;
   margin: 0;
   padding: 0;
   font-family: 'Press Start 2P', monospace;
@@ -44,6 +45,8 @@ nav{
   margin-bottom: 30px;
   position: relative;
   z-index: 500;
+
+  direction: rtl; /* <<< این خط رو اضافه کن */
 }
 nav a{
   color: #facc15;
@@ -59,29 +62,36 @@ nav a:hover{
   transform: scale(1.1);
   box-shadow: 0 0 10px #f59e0b;
 }
-{
-  direction: rtl;   /* <<< کلید حل مشکل */
+
+.dropdown {
+  position: relative;
 }
-/* ===== Dropdown Fix for RTL ===== */
-.dropdown-content {
+
+.dropdown-content{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+
+  background-color: rgba(0, 0, 0, 0.85);
+  min-width: 160px;
+  border-radius: 8px;
+  padding: 10px 0;
+
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
+  z-index: 1000;
+
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
   transition: all 0.25s ease;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content{
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-}
-
-/* وقتی سرچ باز است، منو محو شود */
-body.searching nav{
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(6px);
-  transition: 0.2s ease;
 }
 
 /* =========================
@@ -460,23 +470,7 @@ body.searching nav{
   box-shadow: 0 4px 12px rgba(138, 43, 226, 0.5);
 }
 
-/* ===== Fix Games Dropdown Position (RTL Safe) ===== */
-nav {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-}
 
-.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  right: 0;
-  left: auto;
-  text-align: right;
-}
 
 
 
