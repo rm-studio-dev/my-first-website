@@ -383,37 +383,74 @@ nav a:hover {
   font-size: 12px;
 }
 
-/*لیست نتایج*/
-.search-results{
-  margin: 12px auto 0;
-  width: min(640px, 72vw);
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  border-radius: 14px;
-  box-shadow: 0 0 18px rgba(168,85,247,0.18);
-  padding: 8px;
-  text-align: right;
+/* =========================
+   Search Results Dropdown (Final)
+========================= */
+.search-wrapper{
+  position: relative; /* مهم: نتایج به سرچ بچسبد */
 }
 
+.search-results{
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+
+  width: min(520px, 62vw);
+  z-index: 3000;
+
+  background: rgba(0,0,0,0.70);
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  border-radius: 14px;
+
+  box-shadow:
+    0 0 22px rgba(168,85,247,0.22),
+    0 0 18px rgba(250,204,21,0.12);
+
+  padding: 8px;
+  text-align: right;
+  direction: rtl;
+
+  max-height: 260px;
+  overflow: auto;
+}
+
+/* آیتم‌ها */
 .search-results a{
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
   padding: 10px 12px;
   border-radius: 10px;
+
   text-decoration: none;
   color: #e5e7eb;
   font-size: 12px;
+
   transition: 0.2s;
 }
 
 .search-results a:hover{
   background: rgba(250,204,21,0.14);
   color: #facc15;
+  transform: translateX(-2px);
 }
 
+/* توضیح کوچیک یا ژانر */
+.search-results .meta{
+  opacity: 0.75;
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+/* متن وقتی چیزی نبود */
 .search-results .hint{
   padding: 10px 12px;
   color: #facc15;
   font-size: 12px;
   opacity: 0.9;
 }
+
+
 
