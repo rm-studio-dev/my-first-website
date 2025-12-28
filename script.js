@@ -1,4 +1,6 @@
-// شروع: fade-in امن
+// ==============================
+// Page fade-in/out
+// ==============================
 document.body.classList.add("is-loading");
 
 window.addEventListener("load", () => {
@@ -6,35 +8,35 @@ window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
 
-// ------------------------------
-// Dropdown: کلیک روی "بازی‌ها" فقط منو را باز/بسته کند
-// ------------------------------
+// ==============================
+// Dropdown (Games)
+// ==============================
 document.querySelectorAll(".dropbtn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     const dropdown = btn.closest(".dropdown");
     if (!dropdown) return;
-
     dropdown.classList.toggle("open");
   });
 });
 
-// کلیک بیرون => بستن dropdown
+// close dropdown by clicking outside
 document.addEventListener("click", (e) => {
   document.querySelectorAll(".dropdown.open").forEach((dd) => {
     if (!dd.contains(e.target)) dd.classList.remove("open");
   });
 });
 
-// ------------------------------
-// Page Transition: خروج نرم برای لینک‌های داخلی واقعی
-// ------------------------------
+// ==============================
+// Smooth page transition for internal links
+// ==============================
 const isRealInternalLink = (a) => {
   const hrefAttr = a.getAttribute("href");
   if (!hrefAttr) return false;
   if (hrefAttr === "#" || hrefAttr.startsWith("#")) return false;
   if (hrefAttr.startsWith("mailto:") || hrefAttr.startsWith("tel:")) return false;
   if (a.target === "_blank") return false;
+  if (a.classList.contains("dropbtn")) return false;
 
   try {
     const url = new URL(a.href);
@@ -42,8 +44,6 @@ const isRealInternalLink = (a) => {
   } catch {
     return false;
   }
-
-  if (a.classList.contains("dropbtn")) return false;
   return true;
 };
 
@@ -63,128 +63,194 @@ document.querySelectorAll("a").forEach((link) => {
   });
 });
 
-// ------------------------------
-// Search Open/Close (Click + Focus)
-// ------------------------------
+// ==============================
+// SEARCH (Global - via games.json)
+// HTML expected:
+// .search-wrapper .search-input .search-btn .search-results
+// ==============================
 const searchWrap = document.querySelector(".search-wrapper");
 const searchInput = document.querySelector(".search-input");
 const searchBtn = document.querySelector(".search-btn");
-
-if (searchWrap && searchInput && searchBtn) {
-  searchBtn.addEventListener("click", () => {
-    searchWrap.classList.add("open");
-    searchInput.focus();
-  });
-
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      searchWrap.classList.remove("open");
-      searchInput.blur();
-      searchInput.value = "";
-    }
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!searchWrap.contains(e.target)) {
-      searchWrap.classList.remove("open");
-    }
-  });
-}
-
-// ==============================
-// Site-wide Search (games.json)
-// ==============================
 const resultsBox = document.querySelector(".search-results");
 
-// تشخیص base برای GitHub Pages project site
-const getBasePath = () => {
-  const parts = window.location.pathname.split("/").filter(Boolean);
-  // اگر روی github.io و پروژه‌ای هستی: /repo-name/...
-  if (window.location.hostname.endsWith("github.io") && parts.length > 0) {
-    return "/" + parts[0] + "/";
-  }
-  return "/";
-};
+let allGames = [];
+let lastRendered = [];
 
-const BASE = getBasePath();
-const GAMES_JSON_URL = BASE + "data/games.json";
-
-let ALL_GAMES = [];
-
-const normalize = (s) =>
+// normalize helper (fa/en safe-ish)
+const norm = (s) =>
   (s || "")
     .toString()
+    .trim()
     .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(/\s+/g, " ");
 
-const renderResults = (items, query) => {
-  if (!resultsBox) return;
-
-  const q = normalize(query);
-
-  if (!q) {
-    resultsBox.hidden = true;
-    resultsBox.innerHTML = "";
-    return;
+// fetch games index (recommended)
+async function loadGamesIndex() {
+  try {
+    const res = await fetch("games.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("games.json not found");
+    const data = await res.json();
+    if (Array.isArray(data)) return data;
+  } catch (e) {
+    // fallback: only current page cards (if games.json missing)
+    const cards = Array.from(document.querySelectorAll(".game-card"));
+    return cards.map((c) => ({
+      title: c.dataset.title || c.querySelector("h2")?.textContent || "",
+      desc: c.dataset.desc || c.querySelector("p")?.textContent || "",
+      url: "#",
+      genre: "home",
+    }));
   }
-
-  if (!items.length) {
-    resultsBox.hidden = false;
-    resultsBox.innerHTML = `<div class="hint">هیچ بازی‌ای پیدا نشد 😅</div>`;
-    return;
-  }
-
-  resultsBox.hidden = false;
-  resultsBox.innerHTML = items
-    .slice(0, 8)
-    .map((g) => {
-      const url = BASE + g.url.replace(/^\/+/, "");
-      return `<a href="${url}">${g.title} — <span style="opacity:.75">${g.genre}</span></a>`;
-    })
-    .join("");
-};
-
-const filterAllGames = (query) => {
-  const q = normalize(query);
-  if (!q) return [];
-  return ALL_GAMES.filter((g) => {
-    const hay = normalize((g.title || "") + " " + (g.desc || "") + " " + (g.genre || ""));
-    return hay.includes(q);
-  });
-};
-
-// لود دیتای بازی‌ها
-fetch(GAMES_JSON_URL)
-  .then((r) => r.json())
-  .then((data) => {
-    ALL_GAMES = Array.isArray(data) ? data : [];
-  })
-  .catch(() => {
-    // اگر فایل نبود یا مسیر غلط بود
-    ALL_GAMES = [];
-  });
-
-// تایپ => نمایش نتایج کل سایت
-if (searchInput) {
-  searchInput.addEventListener("input", () => {
-    const items = filterAllGames(searchInput.value);
-    renderResults(items, searchInput.value);
-  });
-
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      searchInput.value = "";
-      renderResults([], "");
-    }
-  });
+  return [];
 }
 
-// کلیک بیرون => بستن لیست نتایج
-document.addEventListener("click", (e) => {
-  if (resultsBox && !resultsBox.contains(e.target) && !searchWrap.contains(e.target)) {
+function openSearchUI() {
+  if (!searchWrap) return;
+  searchWrap.classList.add("open");
+  searchInput?.focus();
+}
+
+function closeSearchUI({ clear = false } = {}) {
+  if (!searchWrap) return;
+
+  searchWrap.classList.remove("open");
+  if (resultsBox) {
     resultsBox.hidden = true;
+    resultsBox.innerHTML = "";
+  }
+  document.body.classList.remove("searching");
+
+  if (clear && searchInput) searchInput.value = "";
+}
+
+function setSearchingState(isOn) {
+  if (isOn) document.body.classList.add("searching");
+  else document.body.classList.remove("searching");
+}
+
+function renderResults(items, q) {
+  if (!resultsBox) return;
+
+  const query = norm(q);
+  if (!query) {
+    resultsBox.hidden = true;
+    resultsBox.innerHTML = "";
+    setSearchingState(false);
+    lastRendered = [];
+    return;
+  }
+
+  lastRendered = items.slice(0, 8);
+
+  if (!lastRendered.length) {
+    resultsBox.hidden = false;
+    resultsBox.innerHTML = `<div class="hint">هیچ نتیجه‌ای پیدا نشد 😅</div>`;
+    setSearchingState(true); // حتی وقتی نتیجه نیست، منو محو شود
+    return;
+  }
+
+  const html = lastRendered
+    .map((g) => {
+      const title = g.title || "";
+      const genre = g.genre ? ` — ${g.genre}` : "";
+      const url = g.url || "#";
+      return `<a href="${url}" class="search-item">${title}${genre}</a>`;
+    })
+    .join("");
+
+  resultsBox.hidden = false;
+  resultsBox.innerHTML = html;
+  setSearchingState(true);
+}
+
+function searchGames(q) {
+  const query = norm(q);
+  if (!query) {
+    renderResults([], "");
+    return;
+  }
+
+  const filtered = allGames.filter((g) => {
+    const t = norm(g.title);
+    const d = norm(g.desc);
+    const ge = norm(g.genre);
+    return t.includes(query) || d.includes(query) || ge.includes(query);
+  });
+
+  renderResults(filtered, q);
+}
+
+// handle click on a result (with smooth transition)
+document.addEventListener("click", (e) => {
+  const a = e.target.closest(".search-results a");
+  if (!a) return;
+
+  // اگر لینک واقعی بود، انیمیشن خروج
+  if (a.getAttribute("href") && a.getAttribute("href") !== "#") {
+    e.preventDefault();
+    const target = a.href;
+
+    document.body.classList.remove("loaded");
+    document.body.classList.add("is-loading");
+
+    setTimeout(() => {
+      window.location.href = target;
+    }, 400);
+  } else {
+    closeSearchUI();
   }
 });
 
+(async function initSearch() {
+  if (!searchWrap || !searchInput || !searchBtn || !resultsBox) return;
 
+  allGames = await loadGamesIndex();
+
+  // typing => live filter
+  searchInput.addEventListener("input", () => {
+    openSearchUI();
+    searchGames(searchInput.value);
+  });
+
+  // Enter => go to first result
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      const first = lastRendered?.[0];
+      if (first && first.url && first.url !== "#") {
+        document.body.classList.remove("loaded");
+        document.body.classList.add("is-loading");
+        setTimeout(() => {
+          window.location.href = first.url;
+        }, 400);
+      } else {
+        // اگر چیزی نیست، فقط سرچ رو اجرا کن که پیام "هیچ نتیجه‌ای..." بیاد
+        searchGames(searchInput.value);
+      }
+    }
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeSearchUI({ clear: true });
+    }
+  });
+
+  // click on search button:
+  // - if closed: open
+  // - if open: search
+  searchBtn.addEventListener("click", () => {
+    if (!searchWrap.classList.contains("open")) {
+      openSearchUI();
+      return;
+    }
+    searchGames(searchInput.value);
+  });
+
+  // click outside => close
+  document.addEventListener("click", (e) => {
+    if (!searchWrap.contains(e.target)) {
+      closeSearchUI();
+    }
+  });
+})();
