@@ -61,22 +61,18 @@ nav a:hover{
 }
 
 /* ===== Dropdown Fix for RTL ===== */
-.dropdown {
-  position: relative;
-}
-
 .dropdown-content {
-  position: absolute;
-  top: 100%;
-  right: 0;        /* مهم: در RTL از راست باز شود */
-  left: auto;
-  min-width: 160px;
-  text-align: right;
-  background-color: rgba(0,0,0,0.85);
-  border-radius: 8px;
-  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
 }
 
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
 /* وقتی سرچ باز است، منو محو شود */
 body.searching nav{
@@ -479,5 +475,6 @@ nav {
   left: auto;
   text-align: right;
 }
+
 
 
