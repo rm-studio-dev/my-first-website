@@ -411,3 +411,8 @@ body.searching nav{
   transform: scale(0.96);
   box-shadow: 0 3px 8px rgba(255, 0, 76, 0.4);
 }
+
+/* Fix anchor scroll for game cards */
+.game-card {
+  scroll-margin-top: 90px;
+}
