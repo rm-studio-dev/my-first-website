@@ -124,6 +124,17 @@ body.searching nav{
   transform: translateY(-10px);
   box-shadow: 0 0 20px #f59e0b;
 }
+/* برای هر بازی */
+.game-card{
+  scroll-margin-top: 24px; /* وقتی می‌پره روی کارت، زیر هدر گیر نکنه */
+}
+
+.game-card:target{
+  outline: 2px solid rgba(250,204,21,0.9);
+  box-shadow: 0 0 28px rgba(250,204,21,0.25), 0 0 28px rgba(168,85,247,0.22);
+  transform: translateY(-6px);
+  transition: 0.25s ease;
+}
 
 /* ✅ فقط برای کارت‌های ژانر در صفحه هوم */
 .genre-card .genre-link{
@@ -405,3 +416,4 @@ body.searching nav{
     filter: saturate(1.25);
   }
 }
+
