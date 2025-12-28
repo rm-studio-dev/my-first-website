@@ -171,17 +171,21 @@ function renderResults(items, q) {
   }
 
   const html = lastRendered
-    .map((g) => {
-      const title = g.title || "";
-      const genre = g.genre ? ` — ${g.genre}` : "";
-      const url = resolveUrl(g.url || "#");
+  .map((g) => {
+    const title = g.title || "";
+    const genre = g.genre ? ` — ${g.genre}` : "";
 
-      return `<a href="${url}" class="search-item">
-        <span>${title}</span>
-        <span class="meta">${genre}</span>
-      </a>`;
-    })
-    .join("");
+    const base = resolveUrl(g.url || "#");
+
+    // ✅ لینک با q برای اسکرول/هایلایت در صفحه مقصد
+    const url =
+      base === "#"
+        ? "#"
+        : `${base}${base.includes("?") ? "&" : "?"}q=${encodeURIComponent(title)}`;
+
+    return `<a href="${url}" class="search-item">${title}${genre}</a>`;
+  })
+  .join("");
 
   resultsBox.hidden = false;
   resultsBox.innerHTML = html;
@@ -287,3 +291,50 @@ document.addEventListener("click", (e) => {
     }
   });
 })();
+
+// ==============================
+// Jump to searched game on destination page (?q=...)
+// ==============================
+function findBestCardMatch(query) {
+  const q = norm(query);
+  if (!q) return null;
+
+  const cards = Array.from(document.querySelectorAll(".game-card"));
+  if (!cards.length) return null;
+
+  // اولویت: data-title دقیق
+  let exact = cards.find((c) => norm(c.dataset.title) === q);
+  if (exact) return exact;
+
+  // بعد: h2 دقیق
+  exact = cards.find((c) => norm(c.querySelector("h2")?.textContent) === q);
+  if (exact) return exact;
+
+  // بعد: شامل شدن
+  return (
+    cards.find((c) => norm(c.dataset.title).includes(q)) ||
+    cards.find((c) => norm(c.querySelector("h2")?.textContent).includes(q)) ||
+    null
+  );
+}
+
+function highlightAndScrollToCard(card) {
+  if (!card) return;
+
+  card.classList.add("match-highlight");
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // بعد چند ثانیه هایلایت برداشته شود
+  setTimeout(() => card.classList.remove("match-highlight"), 2500);
+}
+
+// وقتی صفحه لود شد، اگر q داریم برو همون کارت
+window.addEventListener("load", () => {
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get("q");
+  if (!q) return;
+
+  const card = findBestCardMatch(q);
+  highlightAndScrollToCard(card);
+});
+
