@@ -628,12 +628,14 @@ body.searching nav{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;  /* جلوگیری از اسکرول اضافی */
 }
 
 .container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;  /* اگر محتوا بیشتر از فضای موجود باشد، اسکرول عمودی فعال می‌شود */
 }
 
 /* برای صفحه هوم */
@@ -645,6 +647,8 @@ body.home-page {
 body.about-page {
   /* استایل‌های خاص صفحه درباره من */
 }
+
+
 
 
 
