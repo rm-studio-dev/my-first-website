@@ -636,5 +636,15 @@ body.searching nav{
   flex-direction: column;
 }
 
+/* برای صفحه هوم */
+body.home-page {
+  /* استایل‌های خاص صفحه خانه */
+}
+
+/* برای صفحه درباره من */
+body.about-page {
+  /* استایل‌های خاص صفحه درباره من */
+}
+
 
 
