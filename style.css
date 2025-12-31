@@ -153,57 +153,53 @@ body.searching nav{
 /* =========================
    GAME CARDS
 ========================= */
-.games {
+.games{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.game-card {
-  background-color: rgba(128, 0, 128, 0.5);
+.game-card{
+  box-sizing: border-box;
+  background-color: rgba(128,0,128,0.5);
   color: #e5e7eb;
   padding: 15px;
   border-radius: 10px;
   width: 200px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  scroll-margin-top: 90px; /* ✅ برای page.html#id */
+
+  scroll-margin-top: 90px;
 }
 
-.game-card img {
+/* عکس‌ها یکدست و داخل کارت */
+.game-card img{
   width: 100%;
-  height: auto;
+  height: 110px;          /* ✅ برای یکدست شدن کارت‌ها */
+  display: block;
+  object-fit: cover;       /* ✅ بیرون نزدن/کراپ درست */
   border-radius: 10px;
   margin-bottom: 10px;
-  object-fit: cover; /* جلوگیری از برآمدگی تصویر */
 }
 
-.game-card h2 {
-  text-align: center; /* برای وسط‌چین کردن عنوان بازی */
+/* عنوان‌ها وسط‌چین + جلوگیری از بیرون زدن متن‌های طولانی مثل Assassin's Creed */
+.game-card h2{
+  margin: 8px 0 6px;
+  text-align: center;      /* ✅ قطعی */
+  line-height: 1.35;
+  overflow-wrap: anywhere; /* ✅ شکستن کلمه طولانی */
+  word-break: break-word;
 }
 
-.game-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px #f59e0b;
-}
-
-/* کارت‌های ژانر: کل کارت کلیک‌پذیر */
-.genre-card .genre-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.genre-card .genre-link h2,
-.genre-card .genre-link p {
+/* متن زیر عنوان */
+.game-card p{
   margin: 0;
 }
 
-.genre-card .genre-link p {
-  margin-top: 8px;
-  opacity: 0.9;
-  font-size: 12px;
+.game-card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px #f59e0b;
 }
 
 /* کارت‌های ژانر: کل کارت کلیک‌پذیر */
@@ -212,10 +208,12 @@ body.searching nav{
   text-decoration: none;
   color: inherit;
 }
+
 .genre-card .genre-link h2,
 .genre-card .genre-link p{
   margin: 0;
 }
+
 .genre-card .genre-link p{
   margin-top: 8px;
   opacity: 0.9;
@@ -624,5 +622,6 @@ body.searching nav{
   display: inline-block;
   margin-top: 14px;
 }
+
 
 
