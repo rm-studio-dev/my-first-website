@@ -623,5 +623,18 @@ body.searching nav{
   margin-top: 14px;
 }
 
+/* برای صفحه خانه و درباره من */
+.home-page, .about-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 
 
