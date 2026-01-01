@@ -1,0 +1,88 @@
+[
+  {
+    "id": "wolverine",
+    "title": "Wolverine",
+    "genre": "action",
+    "desc": "بازی اکشن",
+    "image": "genre/action/pic/action1.jpg"
+  },
+  {
+    "id": "call-of-duty",
+    "title": "Call of Duty",
+    "genre": "action",
+    "desc": "بازی اکشن",
+    "image": "genre/action/pic/action2.jpg"
+  },
+  {
+    "id": "warframe",
+    "title": "Warframe",
+    "genre": "action",
+    "desc": "بازی اکشن",
+    "image": "genre/action/pic/action3.jpg"
+  },
+  {
+    "id": "deadpool",
+    "title": "Deadpool",
+    "genre": "action",
+    "desc": "بازی اکشن",
+    "image": "genre/action/pic/action4.jpg"
+  },
+
+  {
+    "id": "tomb-raider",
+    "title": "Tomb Raider",
+    "genre": "adventure",
+    "desc": "بازی ماجرایی",
+    "image": "genre/adventure/pic/adventure1.jpg"
+  },
+  {
+    "id": "uncharted",
+    "title": "Uncharted",
+    "genre": "adventure",
+    "desc": "بازی ماجرایی",
+    "image": "genre/adventure/pic/adventure2.jpg"
+  },
+  {
+    "id": "god-of-war",
+    "title": "God of War",
+    "genre": "adventure",
+    "desc": "بازی ماجرایی",
+    "image": "genre/adventure/pic/adventure3.jpg"
+  },
+  {
+    "id": "assassins-creed",
+    "title": "Assassin's Creed",
+    "genre": "adventure",
+    "desc": "بازی ماجرایی",
+    "image": "genre/adventure/pic/adventure4.jpg"
+  },
+
+  {
+    "id": "fortnite",
+    "title": "Fortnite",
+    "genre": "online",
+    "desc": "بازی آنلاین",
+    "image": "genre/online/pic/Online1.jpg"
+  },
+  {
+    "id": "dota-2",
+    "title": "Dota 2",
+    "genre": "online",
+    "desc": "بازی آنلاین",
+    "image": "genre/online/pic/Online2.jpg"
+  },
+  {
+    "id": "league-of-legends",
+    "title": "League of Legends",
+    "genre": "online",
+    "desc": "بازی آنلاین",
+    "image": "genre/online/pic/Online3.jpg"
+  },
+  {
+    "id": "pubg",
+    "title": "PUBG",
+    "genre": "online",
+    "desc": "بازی آنلاین",
+    "image": "genre/online/pic/Online4.jpg"
+  }
+]
